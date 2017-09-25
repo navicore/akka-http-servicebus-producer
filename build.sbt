@@ -17,6 +17,8 @@ val akkaHttpVersion = "10.0.9"
 
 libraryDependencies ++=
   Seq(
+    "com.microsoft.azure" % "azure-servicebus" % "1.0.0",
+
     "ch.megard" %% "akka-http-cors" % "0.2.1",
 
     "ch.qos.logback" % "logback-classic" % "1.1.7",
