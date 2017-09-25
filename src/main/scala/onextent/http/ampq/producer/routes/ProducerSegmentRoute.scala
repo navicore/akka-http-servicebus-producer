@@ -6,6 +6,7 @@ import ch.megard.akka.http.cors.scaladsl.CorsDirectives._
 import akka.http.scaladsl.server.{Directives, Route}
 import com.typesafe.scalalogging.LazyLogging
 import onextent.http.ampq.producer.ErrorSupport
+import onextent.http.ampq.producer.io.servicebus.QueueWriter
 import onextent.http.ampq.producer.models.{JsonSupport, Message}
 import spray.json._
 
@@ -28,6 +29,7 @@ object ProducerSegmentRoute
               post {
                 decodeRequest {
                   entity(as[Message]) { m =>
+                    QueueWriter(name, m.body)
                     val response = Message(java.util.UUID.randomUUID(),
                                            new Date(),
                                            s"${m.body} to you, too!")
