@@ -27,23 +27,23 @@ trait ErrorSupport extends LazyLogging {
   val corsSettings: CorsSettings.Default = CorsSettings.defaultSettings.copy(
     allowedOrigins = HttpOriginRange(corsOriginList: _*))
 
-  val rejectionHandler
-    : RejectionHandler = corsRejectionHandler withFallback RejectionHandler.default
+  val rejectionHandler: RejectionHandler = corsRejectionHandler withFallback RejectionHandler.default
 
   val exceptionHandler: ExceptionHandler = ExceptionHandler {
-    case e: NoSuchElementException =>
-      complete(StatusCodes.NotFound -> e.getMessage)
-    case e: IllegalArgumentException =>
-      logger.warn(s"IllegalArgument $e")
-      complete(StatusCodes.BadRequest -> e.getMessage)
     case e: IOException =>
-      logger.warn(s"IOException $e")
-      complete(StatusCodes.Forbidden -> e.getMessage)
+      extractUri { uri =>
+        complete(StatusCodes.Forbidden -> e.getMessage)
+      }
+    case e: Exception =>
+      extractUri { uri =>
+        println(s"ejs $e on $uri")
+        logger.error(s"EJS $e on $uri")
+        complete(StatusCodes.ServiceUnavailable -> s"${e.getMessage}")
+      }
   }
 
   val handleErrors
-    : Directive[Unit] = handleRejections(rejectionHandler) & handleExceptions(
-    exceptionHandler)
+    : Directive[Unit] = handleRejections(rejectionHandler) & handleExceptions( exceptionHandler)
 
   def HealthCheck: Route =
     path("healthcheck") {

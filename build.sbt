@@ -21,9 +21,10 @@ libraryDependencies ++=
 
     "ch.megard" %% "akka-http-cors" % "0.2.1",
 
+    "com.typesafe.scala-logging" %% "scala-logging" % "3.7.2",
     "ch.qos.logback" % "logback-classic" % "1.1.7",
+
     "com.typesafe" % "config" % "1.2.1",
-    "com.typesafe.scala-logging" %% "scala-logging" % "3.5.0",
 
     "com.typesafe.akka" %% "akka-actor" % akkaVersion,
     "com.typesafe.akka" %% "akka-stream" % akkaVersion,
@@ -31,12 +32,19 @@ libraryDependencies ++=
     "com.typesafe.akka" %% "akka-http" % akkaHttpVersion,
     "com.typesafe.akka" %% "akka-http-spray-json" % akkaHttpVersion,
 
-    "org.json4s" %% "json4s-native" % "3.5.3",
-    "com.github.nscala-time" %% "nscala-time" % "2.16.0",
+    "org.json4s" %% "json4s-native" % "3.5.3"
+    //"com.github.nscala-time" %% "nscala-time" % "2.16.0",
 
-    "org.scalatest" %% "scalatest" % "3.0.1" % "test"
+    //"org.scalatest" %% "scalatest" % "3.0.1" % "test"
 
   )
+
+/*
+libraryDependencies ~= { _.map(_.exclude("org.slf4j", "slf4j-log4j12")) }
+libraryDependencies ~= { _.map(_.exclude("javax.jms", "jms")) }
+libraryDependencies ~= { _.map(_.exclude("com.sun.jdmk", "jmxtools")) }
+libraryDependencies ~= { _.map(_.exclude("com.sun.jmx", "jmxri")) }
+*/
 
 dependencyOverrides ++= Set(
   "com.typesafe.akka" %% "akka-actor"  % akkaVersion,

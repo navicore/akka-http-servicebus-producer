@@ -1,19 +1,22 @@
 package onextent.http.ampq.producer.io.servicebus
 
+import akka.http.scaladsl.server.{Directive1, Directives}
 import com.microsoft.azure.servicebus._
 import com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder
 import com.typesafe.config.{Config, ConfigFactory}
 import com.typesafe.scalalogging.LazyLogging
+import onextent.http.ampq.producer.ErrorSupport
 
-object QueueWriter extends LazyLogging {
+import scala.compat.java8.FutureConverters
+import scala.concurrent.Future
 
-  val conf: Config = ConfigFactory.load()
+trait QueueWriter extends LazyLogging with Directives with ErrorSupport {
+
   val connectionString: String = conf.getString("main.serviceBusConnectionString")
+  val defaultQueue: String = conf.getString("main.defaultQueue")
 
-  def apply(queueName: String, message: String): Unit = {
-
+  def writeQueue(message: String, queueName: String = defaultQueue ): Directive1[Future[Void]] = {
     val queueClient = new QueueClient(new ConnectionStringBuilder(connectionString, queueName), ReceiveMode.RECEIVEANDDELETE)
-    queueClient.sendAsync(new Message(message)).thenRunAsync(() => { logger.info("sent")})
+    provide(FutureConverters.toScala(queueClient.sendAsync(new Message(message))))
   }
-
 }

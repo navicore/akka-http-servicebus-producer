@@ -7,6 +7,7 @@ import akka.stream.ActorMaterializer
 import com.typesafe.scalalogging.LazyLogging
 import onextent.http.ampq.producer.models.JsonSupport
 import onextent.http.ampq.producer.routes.{ProducerRoute, ProducerSegmentRoute}
+
 import scala.concurrent.ExecutionContextExecutor
 
 object Main extends LazyLogging with JsonSupport with ErrorSupport {
