@@ -1,7 +1,7 @@
 package onextent.http.ampq.producer
 
+import collection.JavaConverters._
 import java.io.IOException
-
 import akka.http.scaladsl.model._
 import akka.http.scaladsl.model.headers.{HttpOrigin, HttpOriginRange}
 import akka.http.scaladsl.server.Directives._
@@ -14,7 +14,6 @@ import com.typesafe.scalalogging.LazyLogging
 trait ErrorSupport extends LazyLogging {
 
   val conf: Config = ConfigFactory.load()
-  import collection.JavaConverters._
   val corsOriginList: List[HttpOrigin] = conf
     .getStringList("main.corsOrigin")
     .asScala
