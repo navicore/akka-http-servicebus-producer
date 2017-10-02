@@ -1,4 +1,4 @@
-package onextent.http.ampq.producer
+package onextent.http.servicebus.producer
 
 import collection.JavaConverters._
 import java.io.IOException
@@ -30,7 +30,7 @@ trait ErrorSupport extends LazyLogging {
 
   val exceptionHandler: ExceptionHandler = ExceptionHandler {
     case e: IOException =>
-      extractUri { uri =>
+      extractUri { _ =>
         complete(StatusCodes.Forbidden -> e.getMessage)
       }
     case e: Exception =>

@@ -1,12 +1,12 @@
-package onextent.http.ampq.producer
+package onextent.http.servicebus.producer
 
 import akka.actor.ActorSystem
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.server.Directives._
 import akka.stream.ActorMaterializer
 import com.typesafe.scalalogging.LazyLogging
-import onextent.http.ampq.producer.models.JsonSupport
-import onextent.http.ampq.producer.routes.{ProducerRoute, ProducerSegmentRoute}
+import onextent.http.servicebus.producer.models.JsonSupport
+import onextent.http.servicebus.producer.routes.{ProducerRoute, ProducerSegmentRoute}
 
 import scala.concurrent.ExecutionContextExecutor
 
