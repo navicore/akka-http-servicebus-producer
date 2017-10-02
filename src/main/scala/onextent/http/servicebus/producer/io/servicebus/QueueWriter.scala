@@ -1,11 +1,10 @@
-package onextent.http.ampq.producer.io.servicebus
+package onextent.http.servicebus.producer.io.servicebus
 
 import akka.http.scaladsl.server.{Directive1, Directives}
 import com.microsoft.azure.servicebus._
 import com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder
-import com.typesafe.config.{Config, ConfigFactory}
 import com.typesafe.scalalogging.LazyLogging
-import onextent.http.ampq.producer.ErrorSupport
+import onextent.http.servicebus.producer.ErrorSupport
 
 import scala.compat.java8.FutureConverters
 import scala.concurrent.Future

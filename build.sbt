@@ -1,4 +1,4 @@
-name := "AkkaHttpAmqpProducer"
+name := "AkkaHttpServiceBusProducer"
 
 fork := true
 javaOptions in test ++= Seq(
@@ -39,18 +39,11 @@ libraryDependencies ++=
 
   )
 
-/*
-libraryDependencies ~= { _.map(_.exclude("org.slf4j", "slf4j-log4j12")) }
-libraryDependencies ~= { _.map(_.exclude("javax.jms", "jms")) }
-libraryDependencies ~= { _.map(_.exclude("com.sun.jdmk", "jmxtools")) }
-libraryDependencies ~= { _.map(_.exclude("com.sun.jmx", "jmxri")) }
-*/
-
 dependencyOverrides ++= Set(
   "com.typesafe.akka" %% "akka-actor"  % akkaVersion,
   "com.typesafe.akka" %% "akka-stream" % akkaVersion
 )
 
-mainClass in assembly := Some("onextent.http.ampq.producer.Main")
-assemblyJarName in assembly := "AkkaHttpAmqpProducer.jar"
+mainClass in assembly := Some("onextent.http.servicebus.producer.Main")
+assemblyJarName in assembly := "AkkaHttpServiceBusProducer.jar"
 

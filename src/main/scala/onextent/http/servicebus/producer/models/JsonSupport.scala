@@ -1,4 +1,4 @@
-package onextent.http.ampq.producer.models
+package onextent.http.servicebus.producer.models
 
 import java.util.{Date, UUID}
 import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport

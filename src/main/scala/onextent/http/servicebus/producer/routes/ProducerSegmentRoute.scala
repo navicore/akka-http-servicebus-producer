@@ -1,13 +1,13 @@
-package onextent.http.ampq.producer.routes
+package onextent.http.servicebus.producer.routes
 
 import java.util.Date
 
 import ch.megard.akka.http.cors.scaladsl.CorsDirectives._
 import akka.http.scaladsl.server.{Directives, Route}
 import com.typesafe.scalalogging.LazyLogging
-import onextent.http.ampq.producer.ErrorSupport
-import onextent.http.ampq.producer.io.servicebus.QueueWriter
-import onextent.http.ampq.producer.models.{JsonSupport, Message}
+import onextent.http.servicebus.producer.ErrorSupport
+import onextent.http.servicebus.producer.io.servicebus.QueueWriter
+import onextent.http.servicebus.producer.models.{JsonSupport, Message}
 import spray.json._
 
 import scala.concurrent.Future
