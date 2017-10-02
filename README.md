@@ -4,7 +4,7 @@
 
 Write JSON to Azure Service Bus via AKKA HTTP
 
-# UNDER CONSTRUCTION
+a demo of akka http getting json posts and rewriting them to service bus
 
 Starter project created via:
 
